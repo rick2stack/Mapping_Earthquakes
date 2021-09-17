@@ -31,13 +31,24 @@ let map = L.map('mapid', {
 })
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
+
+// Create a style for the lines.
+let myStyle = {
+  color: "#ffffa1",
+  weight: 2
+}
 // Add GeoJSON data.
-let airportData = 'https://raw.githubusercontent.com/rick2stack/Mapping_Earthquakes/main/Mapping_GeoJSON_Multiple_Points/static/js/majorAirports.json';
+let torontoRoutes = 'https://raw.githubusercontent.com/rick2stack/Mapping_Earthquakes/main/Mapping_GeoJSON_Linestrings/static/js/torontoRoutes.json';
 // Grabbing our GeoJSON data.
-d3.json(airportData).then(function(data) {
+d3.json(torontoRoutes).then(function(data) {
   console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
-L.geoJson(data).addTo(map);
+L.geoJson(data,{style: myStyle, onEachFeature: function(feature,layer){
+  layer.bindPopup("<h3> Airline: "+ feature.properties.airline + "</h3><hr><h3>Destination: " 
+  + feature.properties.dst +"</h3>");
+  }
+})
+.addTo(map);
 });
 
 
