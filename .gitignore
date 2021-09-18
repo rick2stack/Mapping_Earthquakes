@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 config.js
+*/module 13
 
 # Log file
 *.log
