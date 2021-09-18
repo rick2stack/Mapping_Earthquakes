@@ -20,8 +20,8 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-  Light: light,
-  Dark: dark
+  "Streets": streets,
+  "Satelite Streets": sateliteStreets
 };
 
 let map = L.map('mapid', {

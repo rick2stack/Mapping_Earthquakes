@@ -37,18 +37,15 @@ let myStyle = {
   color: "#ffffa1",
   weight: 2
 }
+
 // Add GeoJSON data.
-let torontoRoutes = 'https://raw.githubusercontent.com/rick2stack/Mapping_Earthquakes/main/Mapping_GeoJSON_Linestrings/static/js/torontoRoutes.json';
+let torontoHoods = 'https://raw.githubusercontent.com/rick2stack/Mapping_Earthquakes/main/Mapping_GeoJSON_Polygons/static/js/torontoNeighborhoods.json';
 // Grabbing our GeoJSON data.
-d3.json(torontoRoutes).then(function(data) {
+d3.json(torontoHoods).then(function(data) {
   console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
-L.geoJson(data,{style: myStyle, onEachFeature: function(feature,layer){
-  layer.bindPopup("<h3> Airline: "+ feature.properties.airline + "</h3><hr><h3>Destination: " 
-  + feature.properties.dst +"</h3>");
-  }
-})
-.addTo(map);
+L.geoJson(data).addTo(map);
 });
+
 
 
